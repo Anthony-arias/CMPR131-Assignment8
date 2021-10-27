@@ -7,9 +7,11 @@
 
 #include <iostream>
 #include <string>
-#include "optionOne.h""
+#include "optionOne.h"
 #include "optionTwo.h"
 #include "optionThree.h"
+#include "Patient.h"
+#include "queue"
 #include "input.h"
 
 void displayMainMenu(void);
@@ -68,8 +70,27 @@ void programTwo(void)
     clearScreen();
     cout << "\t2> Simulation of an emergency room (ER) using priority queue STL" << endl;
     cout << "\t" + string(100, char(196)) << endl;
-    /*stuff here*/
-    pause("\tdelete this");
+    priority_queue<Patient> priorityList;
+    vector<Patient> transferedList;
+    do
+    {
+        cout << "\n\t\t A> Register a patient";
+        cout << "\n\t\t B> Transfer patient(s) to the designation";
+        cout << "\n\t\t C> Display transferred patients";
+        cout << "\n\t\t 0> return\n";
+        cout << "\t" + string(100, char(205)) << endl;
+        char option = inputChar("\t\tOption: ");
+
+        switch (option)
+        {
+        case '0': return;
+        case 'A': registerPatient(priorityList); break;
+        case 'B': transferPatients(priorityList, transferedList); break;
+        case 'C': displayTransferedPatients(transferedList); break;
+        default: cout << "\t\tERROR-1A: Invalid input. Must be '0','A','B' or 'C'" << endl;
+        }
+        cout << endl;
+    } while (true);
 }
 
 //PreCondition: NA
