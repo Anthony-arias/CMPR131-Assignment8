@@ -2,12 +2,13 @@
 
 // Team: Anthony, An, Van, Vincent, Nhan
 // Chapter 8: Applications using Queues
-// 10/14/2021
+// 10/28/2021
 
 
 #include <iostream>
 #include <string>
-#include "optionOne.h""
+#include <vector>
+#include "optionOne.h"
 #include "optionTwo.h"
 #include "optionThree.h"
 #include "input.h"
@@ -73,16 +74,67 @@ void programTwo(void)
 }
 
 //PreCondition: NA
-//PostCondition:
+//PostCondition: display the contents in program Three: Simulation of checkout lines at CostCo using multiple queues STL
 void programThree(void)
 {
     clearScreen();
-    cout << "\t3> Simulation of checkout lines at a CostCo warehouse store" << endl;
-    cout << "\t" + string(100, char(196)) << endl;
-    /*stuff here*/
-    pause("\tdelete this");
-}
+	srand(time(NULL));
+    cout << "\t3> Simulation of checkout lines at a CostCo warehouse store" << '\n';
+    cout << "\t" + string(100, char(196)) << '\n';
 
+	int operationTime = inputInteger("\n\tEnter the time (0..37800 in seconds) of the store will be operated: ", 0, 37800);
+	int cashRegister = inputInteger("\n\tEnter the number of cash registers (1..10): ", 1, 10);
+
+	vector<queue<int>> availableCheckoutCashier; // use vector to store multiple queues
+
+	for (int i = 0; i < cashRegister; i++)
+		availableCheckoutCashier.push_back(queue<int>()); // vector will now store queue(s) based on the assigned cash register (from 1 to 10)
+
+	int checkout_estimateTime = rand() % 21 + 10;
+	int customerArrival_estimateTime = rand() % 10 + 1;
+	int cashierIndex = 0;
+	int customerCapacity = 0;
+
+	do
+	{
+		int leastBusiestCashier_capacity = availableCheckoutCashier.at(0).size();
+		int leastBusiestCashier_index = 0;
+
+		for (int i = 1; i < cashRegister; i++)
+		{
+			if (leastBusiestCashier_capacity > availableCheckoutCashier.at(i).size())
+			{
+				leastBusiestCashier_capacity = availableCheckoutCashier.at(i).size();
+				leastBusiestCashier_index = i;
+			}
+		}
+
+		//Add customer to the least busiest cashier
+		availableCheckoutCashier.at(leastBusiestCashier_index).push(rand() % 9 + 1);
+		customerCapacity++;
+
+		clearScreen();
+		if (customerCapacity > 0)
+			displayCashierLine(availableCheckoutCashier, operationTime, customerCapacity);
+
+		if (checkout_estimateTime == 0)
+		{
+			for (int i = cashierIndex; i < cashRegister; i++)
+			{
+				if (availableCheckoutCashier.at(i).size() > 0)
+					availableCheckoutCashier.at(i).pop();
+			}
+			checkout_estimateTime = rand() % 10 + 2;
+		}
+
+		customerArrival_estimateTime--;
+		checkout_estimateTime--;
+		operationTime--;
+	} while (operationTime >= 0);
+
+	cout << "\n\n\t";
+    system("pause");
+}
 
 //PreCondition: NA
 //PostCondition: displays main menu options
