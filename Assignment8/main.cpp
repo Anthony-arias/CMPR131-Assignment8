@@ -64,7 +64,7 @@ void programOne(void)
     cout << "\t" + string(100, char(196)) << endl;
     int suitSize = inputInteger("\n\tEnter a number of cards per suite (1..13): ", 1, 13);
     play(suitSize);
-    pause("Press enter to return..");
+    pause("\n\nPress enter to return..");
 }
 
 

@@ -11,7 +11,7 @@
 using namespace std;
 
 
-void war(Player Player1, Player Player2, Deck*& deck1, Deck*& deck2)
+void war(Player &Player1, Player &Player2, Deck*& deck1, Deck*& deck2)
 {
 	vector<Card>smallDeck1, smallDeck2;
 
@@ -102,6 +102,7 @@ void war(Player Player1, Player Player2, Deck*& deck1, Deck*& deck2)
 					}
 					else
 					{
+
 						cout << "\n\t-> Tie breaker again!" << endl;
 						count++;
 					}
@@ -157,14 +158,9 @@ void play(int suitSize)
 	}
 
 	if (Player1Deck->isEmpty()) 
-	{
-		cout << "\n\tPlayer2 takes all because Player1 has no more card." << endl;
-	}
-
-	if (Player2Deck->isEmpty()) 
-	{
-		cout << "\n\tPlayer1 takes all because Player2 has no more card." << endl;
-	}
+		cout << "\n\tPlayer2 wins the war with most number of cards(" << suitSize * 4 << ")." << endl;
+	else
+		cout << "\n\tPlayer1 wins the war with most number of cards(" << suitSize * 4 << ")." << endl;
 
 	delete Player1Deck;
 	delete Player2Deck;
