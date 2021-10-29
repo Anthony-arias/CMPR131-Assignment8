@@ -27,7 +27,7 @@ void registerPatient(priority_queue<Patient> &priorityList)
 void transferPatients(priority_queue<Patient>& priorityList, vector<Patient> &transferedList)
 {
 	if (priorityList.empty())
-		cout << "\n\t\tNo patients in the list" << endl;
+		cout << "\n\t\tNo patients in the list." << endl;
 	else
 	{
 		while (!priorityList.empty())
