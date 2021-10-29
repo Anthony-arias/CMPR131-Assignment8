@@ -56,7 +56,7 @@ void mainMenu(void)
 }
 
 //PreCondition: NA
-//PostCondition: 
+//PostCondition: Simulation of War (card game) using deque STL
 void programOne(void)
 {
     clearScreen();
@@ -69,7 +69,7 @@ void programOne(void)
 
 
 //PreCondition: NA
-//PostCondition: 
+//PostCondition: Simulation of an emergency room (ER) using priority queue STL
 void programTwo(void)
 {
     clearScreen();
