@@ -90,9 +90,10 @@ void programThree(void)
 	for (int i = 0; i < cashRegister; i++)
 		availableCheckoutCashier.push_back(queue<int>()); // vector will now store queue(s) based on the assigned cash register (from 1 to 10)
 
-	int checkout_estimateTime = rand() % 21 + 10;
-	int customerArrival_estimateTime = rand() % 10 + 1;
-	int cashierIndex = 0;
+	// Randomly running program
+	int checkout_estimateTime = rand() % 10 + 1; // checkout time
+	int customerArrival_estimateTime = rand() % 5 + 1; // customers arrive
+	int cashierIndex = 0; 
 	int customerCapacity = 0;
 
 	do
@@ -100,6 +101,7 @@ void programThree(void)
 		int leastBusiestCashier_capacity = availableCheckoutCashier.at(0).size();
 		int leastBusiestCashier_index = 0;
 
+		// Find the least busiest cashier line
 		for (int i = 1; i < cashRegister; i++)
 		{
 			if (leastBusiestCashier_capacity > availableCheckoutCashier.at(i).size())
@@ -110,7 +112,7 @@ void programThree(void)
 		}
 
 		//Add customer to the least busiest cashier
-		availableCheckoutCashier.at(leastBusiestCashier_index).push(rand() % 9 + 1);
+		availableCheckoutCashier.at(leastBusiestCashier_index).push(rand() % 100 + 1);
 		customerCapacity++;
 
 		clearScreen();
