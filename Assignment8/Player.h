@@ -30,6 +30,9 @@ public:
 		return false;
 	}
 
+	// Precondition: input card
+	// Postcondition: insert the card into the deck
+
 	void insert(const Card card) 
 	{
 		deck->insert(card);
@@ -41,12 +44,15 @@ public:
 	{
 		return this->card;
 	}
-
+	// Precondition: input newdeck
+	// Postcondition: set new value for the deck
 	void setDeck(Deck &newDeck) 
 {
 		deck = &newDeck;
 	}
 
+	// Precondition: NA
+	// Postcondition: get deck size
 	int getDeckSize() const {
 		return deck->getSize();
 	}
