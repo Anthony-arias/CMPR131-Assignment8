@@ -105,7 +105,8 @@ void war(Card Player1, Card Player2, Deck*& deck1, Deck*& deck2)
 					}
 					else
 					{
-						cout << "\n\t-> Tie breaker again!" << endl;
+						cout << "\n\tPlayer1: " << smallDeck1[size - 1] << "\tPlayer2: " << smallDeck1[size - 1];
+						cout << "\t -> Tie breaker again!" << endl;
 						count++;
 					}
 
@@ -160,10 +161,10 @@ void play(int suitSize)
 	}
 
 	if (Player1Deck->isEmpty())
-		cout << "\n\Player2 wins the war with most number of cards(" << Player2Deck->getSize() << ")." << endl;
+		cout << "\n\tPlayer2 wins the war with most number of cards(" << Player2Deck->getSize() << ")." << endl;
 
 	else 
-		cout << "\n\Player1 wins the war with most number of cards(" << Player1Deck->getSize() << ")." << endl;
+		cout << "\n\tPlayer1 wins the war with most number of cards(" << Player1Deck->getSize() << ")." << endl;
 
 
 	delete Player1Deck;
