@@ -71,10 +71,14 @@ public:
         return cards.empty();
     }
 
+    // Precondition: N/A
+    // Postcondition: Returns sise of cards
     int getSize() {
         return cards.size();
     }
 
+    // Precondition: input two decks
+    // Postcondition: Split the original deck into two decks
     void splitInto(Deck* deck1, Deck* deck2) 
     {
         deck1->clearDeck();
@@ -88,7 +92,8 @@ public:
         while (!isEmpty())
             deck2->insert(draw());
     }
-
+    // Precondition: N/A
+    // Postcondition: Clear the deck
     void clearDeck() {
         cards.clear();
     }
