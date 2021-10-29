@@ -84,7 +84,7 @@ void programTwo(void)
         cout << "\n\t\t C> Display transferred patients";
         cout << "\n\t\t 0> return\n";
         cout << "\t" + string(100, char(205)) << endl;
-        char option = inputChar("\t\tOption: ");
+        int option = inputChar("\t\tOption: ");
 
         switch (option)
         {

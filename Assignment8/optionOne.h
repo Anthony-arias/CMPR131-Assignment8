@@ -10,7 +10,8 @@
 
 using namespace std;
 
-
+// Precondition: input card of player1, player2, deck1 and deck2
+// Postcondition: finding the winner
 void war(Card Player1, Card Player2, Deck*& deck1, Deck*& deck2)
 {
 	vector<Card>smallDeck1, smallDeck2;
