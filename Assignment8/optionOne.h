@@ -11,7 +11,7 @@
 using namespace std;
 
 
-void war(Player Player1, Player Player2, Deck*& deck1, Deck*& deck2)
+void war(Card Player1, Card Player2, Deck*& deck1, Deck*& deck2)
 {
 	vector<Card>smallDeck1, smallDeck2;
 
@@ -32,24 +32,24 @@ void war(Player Player1, Player Player2, Deck*& deck1, Deck*& deck2)
 			{
 				if ((smallDeck2Size < 4 && smallDeck1Size <= smallDeck2Size) || smallDeck2Size >= 4)
 				{
-					for (int i = 1; i < smallDeck1Size; i++)
+					deck2->insert(Player1);
+					deck2->insert(Player2);
+					for (int i = 1; i <= smallDeck1Size; i++)
 					{
-						Player1.draw();
-						Player2.draw();
-						Player2.insert(Player2.flipCard());
-						Player2.insert(Player1.flipCard());
+						deck2->insert(deck1->draw());
+						deck2->insert(deck2->draw());
 					}
 					cout << "\n\tPlayer2 takes all because Player1 has no more card." << endl;
 					flag = false;
 				}
 				else
 				{
-					for (int i = 1; i < smallDeck2Size; i++)
+					deck1->insert(Player1);
+					deck1->insert(Player2);
+					for (int i = 1; i <= smallDeck2Size; i++)
 					{
-						Player1.draw();
-						Player2.draw();
-						Player1.insert(Player1.flipCard());
-						Player1.insert(Player2.flipCard());
+						deck1->insert(deck1->draw());
+						deck1->insert(deck2->draw());
 					}
 					cout << "\n\tPlayer1 takes all because Player2 has no more card." << endl;
 					flag = false;
@@ -59,12 +59,12 @@ void war(Player Player1, Player Player2, Deck*& deck1, Deck*& deck2)
 			{
 				if (smallDeck2Size < 4)
 				{
-					for (int i = 1; i < smallDeck2Size; i++)
+					deck1->insert(Player1);
+					deck1->insert(Player2);
+					for (int i = 1; i <= smallDeck1Size; i++)
 					{
-						Player1.draw();
-						Player2.draw();
-						Player1.insert(Player1.flipCard());
-						Player1.insert(Player2.flipCard());
+						deck1->insert(deck1->draw());
+						deck1->insert(deck2->draw());
 					}
 					cout << "\n\tPlayer1 takes all because Player2 has no more card." << endl;
 					flag = false;
@@ -74,18 +74,19 @@ void war(Player Player1, Player Player2, Deck*& deck1, Deck*& deck2)
 					int size = 4 * count;
 					for (int i = 0; i < size; i++)
 					{
-						Player1.draw();
-						Player2.draw();
-						smallDeck1.push_back(Player1.flipCard());
-						smallDeck2.push_back(Player2.flipCard());
+						smallDeck1.push_back(deck1->draw());
+						smallDeck2.push_back(deck2->draw());
 					}
 					if (smallDeck1[size - 1] < smallDeck2[size - 1])
 					{
+
 						cout << "\n\tPlayer2 wins tie breaker!" << endl;
+						deck2->insert(Player1);
+						deck2->insert(Player2);
 						for (int i = 0; i < size; i++)
 						{
-							Player2.insert(smallDeck1[i]);
-							Player2.insert(smallDeck2[i]);
+							deck2->insert(smallDeck1[i]);
+							deck2->insert(smallDeck2[i]);
 						}
 						flag = false;
 
@@ -93,10 +94,12 @@ void war(Player Player1, Player Player2, Deck*& deck1, Deck*& deck2)
 					else if (smallDeck1[size - 1] > smallDeck2[size - 1])
 					{
 						cout << "\n\tPlayer1 wins tie breaker!" << endl;
+						deck1->insert(Player1);
+						deck1->insert(Player2);
 						for (int i = 0; i < size; i++)
 						{
-							Player1.insert(smallDeck1[i]);
-							Player1.insert(smallDeck2[i]);
+							deck1->insert(smallDeck1[i]);
+							deck1->insert(smallDeck2[i]);
 						}
 						flag = false;
 					}
@@ -151,20 +154,17 @@ void play(int suitSize)
 		else if (Player1.flipCard() == Player2.flipCard()) 
 		{
 			cout << "\t ->Tie breaker begins!" << endl;
-			war(Player1, Player2, Player1Deck, Player2Deck);
+			war(Player1.flipCard(), Player2.flipCard(), Player1Deck, Player2Deck);
 		}
 		pause("");
 	}
 
-	if (Player1Deck->isEmpty()) 
-	{
-		cout << "\n\tPlayer2 takes all because Player1 has no more card." << endl;
-	}
+	if (Player1Deck->isEmpty())
+		cout << "\n\Player2 wins the war with most number of cards(" << Player2Deck->getSize() << ")." << endl;
 
-	if (Player2Deck->isEmpty()) 
-	{
-		cout << "\n\tPlayer1 takes all because Player2 has no more card." << endl;
-	}
+	else 
+		cout << "\n\Player1 wins the war with most number of cards(" << Player1Deck->getSize() << ")." << endl;
+
 
 	delete Player1Deck;
 	delete Player2Deck;
