@@ -8,6 +8,8 @@
 #include "input.h"
 #include "queue"
 
+//PreCondition: input a priority queue patient
+//PostCondition: Adding a patient into the queue
 void registerPatient(priority_queue<Patient> &priorityList)
 {
 	Patient patient;
@@ -20,7 +22,8 @@ void registerPatient(priority_queue<Patient> &priorityList)
 	cout << "\n\t\tPatient information has been registered.\n";
 }
 
-
+//PreCondition: input a priority queue patient and a vector patient
+//PostCondition: transfer patients from the queue to the vector
 void transferPatients(priority_queue<Patient>& priorityList, vector<Patient> &transferedList)
 {
 	if (priorityList.empty())
@@ -63,7 +66,8 @@ void transferPatients(priority_queue<Patient>& priorityList, vector<Patient> &tr
 	}
 }
 
-
+//PreCondition: input a vector patient
+//PostCondition: showing patient information into the screen
 void displayTransferedPatients(vector<Patient> transferedList)
 {
 	if (!transferedList.empty())
