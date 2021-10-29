@@ -44,7 +44,8 @@ public:
 			value = newValue;
 	}
 
-
+	// Precondition: compare two cards
+	// Postcondition: return true if the left card value less than the right one and otherwise return false
 	bool operator <(const Card& card)
 	{
 		if (value < card.value)
@@ -52,7 +53,8 @@ public:
 
 		return false;
 	}
-
+	// Precondition: compare two cards
+	// Postcondition: return true if the left card value greater than the right one and otherwise return false
 	bool operator >(const Card& card) 
 	{
 		if (value > card.value)
@@ -60,7 +62,8 @@ public:
 
 		return false;
 	}
-
+	// Precondition: compare two cards
+	// Postcondition: return true if the left card value less or equal than the right one and otherwise return false
 	bool operator <=(const Card& card) 
 	{
 		if (value <= card.value)
@@ -68,7 +71,8 @@ public:
 
 		return false;
 	}
-
+	// Precondition: compare two cards
+	// Postcondition: return true if the left card value equal or greater than the right one and otherwise return false
 	bool operator >=(const Card& card) 
 	{
 		if (value >= card.value)
@@ -76,7 +80,8 @@ public:
 
 		return false;
 	}
-
+	// Precondition: compare two cards
+	// Postcondition: return true if the left card value equal than the right one and otherwise return false
 	bool operator ==(const Card& card) 
 	{
 		if (value == card.value)
@@ -85,7 +90,8 @@ public:
 		return false;
 	}
 
-
+	// Precondition: input cart
+	// Postcondition: support cout function
 
 	friend ostream& operator << (ostream& out, const Card& card) 
 	{
