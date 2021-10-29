@@ -14,6 +14,9 @@
 #include "Patient.h"
 #include "queue"
 #include "input.h"
+#include "Card.h"
+#include "Deck.h"
+#include "input.h"
 
 void displayMainMenu(void);
 void mainMenu(void);
@@ -59,8 +62,9 @@ void programOne(void)
     clearScreen();
     cout << "\t1> Simulation of War (card game) using deque STL" << endl;
     cout << "\t" + string(100, char(196)) << endl;
-    /*stuff here*/
-    pause("\tdelete this");
+    int suitSize = inputInteger("\n\tEnter a number of cards per suite (1..13): ", 1, 13);
+    play(suitSize);
+    pause("Press enter to return..");
 }
 
 

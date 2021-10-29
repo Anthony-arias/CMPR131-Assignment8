@@ -142,11 +142,14 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="Deck.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="optionOne.h" />
     <ClInclude Include="optionThree.h" />
     <ClInclude Include="optionTwo.h" />
     <ClInclude Include="Patient.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
